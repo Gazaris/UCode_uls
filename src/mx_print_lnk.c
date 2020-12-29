@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_print_lnk(t_li *print, t_sz *size) {
+void mx_print_lnk(t_items_arr *print, t_sz *size) {
     int counter = 0;
     char *res_itoa_now = mx_itoa(print->info.st_nlink);
     char *res_itoa_lnk = mx_itoa(size->lnk);

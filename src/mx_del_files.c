@@ -1,7 +1,7 @@
 #include "uls.h"
 
-static t_li *create_file_node(t_li *arg) {
-    t_li *node = (t_li *)malloc(1 * sizeof (t_li));
+static t_items_arr *create_file_node(t_items_arr *arg) {
+    t_items_arr *node = (t_items_arr *)malloc(1 * sizeof (t_items_arr));
 
     node->name = mx_strdup(arg->name);
     node->path = mx_strdup(arg->path);
@@ -16,7 +16,7 @@ static t_li *create_file_node(t_li *arg) {
     return node;
 }
 
-static void create_fde(t_li ***dirs, t_li ***args) {
+static void create_fde(t_items_arr ***dirs, t_items_arr ***args) {
     int nDir = 0;
 
     for (int i = 0; (*args)[i] != NULL; i++)
@@ -27,11 +27,11 @@ static void create_fde(t_li ***dirs, t_li ***args) {
                 nDir++;
 
     if (nDir > 0)
-        *dirs = malloc((nDir + 1) * sizeof(t_li *));
+        *dirs = malloc((nDir + 1) * sizeof(t_items_arr *));
 }
 
-void mx_del_files(t_li ***args, st_fl *fl) {
-    t_li **dirs = NULL;
+void mx_del_files(t_items_arr ***args, t_flags *fl) {
+    t_items_arr **dirs = NULL;
     int nDir = 0;
 
     create_fde(&dirs, args);

@@ -1,6 +1,6 @@
 #include "uls.h"
 
-int mx_max_len_n_g(t_li **names) {
+int mx_max_len_n_g(t_items_arr **names) {
     int max = 0;
     int temp = 0;
 

@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_edit_time(t_li *print, char *t, st_fl *fl) {
+void mx_edit_time(t_items_arr *print, char *t, t_flags *fl) {
     int i = 0;
 
     if (fl->T == 1)

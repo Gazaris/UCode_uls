@@ -1,6 +1,6 @@
 #include "uls.h"
 
-static char *check_grp(t_li *total) {
+static char *check_grp(t_items_arr *total) {
     struct group *grp = NULL;
     char *name = NULL;
     
@@ -15,7 +15,7 @@ static char *check_grp(t_li *total) {
     }
 }
 
-static char *check_pw(t_li *total) {
+static char *check_pw(t_items_arr *total) {
     struct passwd *pw = NULL;
     char *name = NULL;
 
@@ -30,7 +30,7 @@ static char *check_pw(t_li *total) {
     }
 }
 
-static void count_size(t_sz *size, t_li *total) {
+static void count_size(t_sz *size, t_items_arr *total) {
     char *name_grp = check_grp(total);
     char *name_pw = check_pw(total);
 
@@ -53,7 +53,7 @@ static void size_zero(t_sz *size) {
     size->usr = 0;
 }
 
-void mx_long_out(t_li **names, st_fl *fl, int flag) {
+void mx_long_out(t_items_arr **names, t_flags *fl, int flag) {
     t_sz *size = malloc(sizeof(t_sz));
     int blk_size = 0;
     int i = 0;

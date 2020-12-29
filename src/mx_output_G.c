@@ -1,6 +1,6 @@
 #include "uls.h"
 
-static void printcols_c(t_li **names, int rows, int num, int maxlen) {
+static void printcols_c(t_items_arr **names, int rows, int num, int maxlen) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; i + j < num; j += rows) {
             mx_printstr_g(names[i + j]);
@@ -11,7 +11,7 @@ static void printcols_c(t_li **names, int rows, int num, int maxlen) {
             mx_printchar('\n');
     }
 }
-static void printcols_x(t_li **names, int rows, int cols, int maxlen) {
+static void printcols_x(t_items_arr **names, int rows, int cols, int maxlen) {
     int j = 0;
     int tempcols = cols;
 
@@ -26,7 +26,7 @@ static void printcols_x(t_li **names, int rows, int cols, int maxlen) {
     }
 }
 
-static void printrow_g(t_li **names, int maxlen) {
+static void printrow_g(t_items_arr **names, int maxlen) {
     for (int i = 0; names[i]; i++) {
         mx_printstr_g(names[i]);
         if (names[i + 1]) 
@@ -34,7 +34,7 @@ static void printrow_g(t_li **names, int maxlen) {
     }
 }
 
-static void print_names(t_li **names, int maxlen, int wincol, st_fl *fl) {
+static void print_names(t_items_arr **names, int maxlen, int wincol, t_flags *fl) {
     int rows;
     int cols = (wincol / maxlen) != 0 ? wincol / maxlen : 1;
     int num = 0;
@@ -56,7 +56,7 @@ static void print_names(t_li **names, int maxlen, int wincol, st_fl *fl) {
     mx_printchar('\n');
 }
 
-void mx_output_g(t_li **names, st_fl *fl) {
+void mx_output_g(t_items_arr **names, t_flags *fl) {
     int maxlen;
     struct winsize win;
 

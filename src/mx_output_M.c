@@ -5,7 +5,7 @@ static void printn(int *len) {
     mx_printchar('\n');
 }
 
-static void print_names(t_li **names, int wincol, st_fl *fl) {
+static void print_names(t_items_arr **names, int wincol, t_flags *fl) {
     int len = 0;
     int nextlen = 0;
 
@@ -28,7 +28,7 @@ static void print_names(t_li **names, int wincol, st_fl *fl) {
     mx_printchar('\n');
 }
 
-void mx_output_m(t_li **names, st_fl *fl) {
+void mx_output_m(t_items_arr **names, t_flags *fl) {
     struct winsize win;
 
     if (!names)

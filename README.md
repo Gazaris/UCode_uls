@@ -23,8 +23,7 @@ For example: `./uls -l test`
 `-R`  Recursively list subdirectories encountered.  
 `-S`  Sort files by size.  
 `-T`  When used with the -l option, display complete time information for the file, including month, day, hour, minute, second, and year.  
-`-c`  Use time when file status was last changed for sorting (-t) or long printing (-l).  
-`-f`  Output is not sorted.  This option turns on the -a option.  
+`-c`  Use time when file status was last changed for sorting (-t) or long printing (-l).
 `-g`  This option is only available for compatibility with POSIX; it isused to display the group name in the long (-l) format output.  
 `-l`  For each file, print the file's file serial number.  
 `-m`  Stream output format; list files across the page, separated by commas.  

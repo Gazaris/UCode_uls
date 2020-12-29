@@ -4,12 +4,12 @@ static void printstr(const char *s) {
 	write(1, s, mx_strlen(s));
 }
 
-static void print_name(t_li *args) {
+static void print_name(t_items_arr *args) {
     mx_printstr(args->name);
     printstr(LS_COLOR_RESET);
 }
 
-static int print_frst(t_li *args) {
+static int print_frst(t_items_arr *args) {
     if (MX_IS_DIR(args->info.st_mode)) {
         printstr("\033[34m");
         print_name(args);
@@ -29,7 +29,7 @@ static int print_frst(t_li *args) {
     return 0;
 }
 
-static int print_sec(t_li *args) {
+static int print_sec(t_items_arr *args) {
     if (MX_IS_BLK(args->info.st_mode)) {
         printstr("\033[34;46m");
         print_name(args);
@@ -48,7 +48,7 @@ static int print_sec(t_li *args) {
     return 0;
 }
 
-void mx_printstr_g(t_li *args) {
+void mx_printstr_g(t_items_arr *args) {
     if (print_frst(args) == 1) {
     }
     else if (print_sec(args) == 1) {

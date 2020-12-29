@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_get_user_name(t_li *print, int usr) {
+void mx_get_user_name(t_items_arr *print, int usr) {
     struct passwd *pw = getpwuid(print->info.st_uid);
     int counter = 0;
     char *name = NULL;
@@ -23,7 +23,7 @@ void mx_get_user_name(t_li *print, int usr) {
     free(name);
 }
 
-void mx_get_group_name(t_li *print, int group) {
+void mx_get_group_name(t_items_arr *print, int group) {
     struct group *grp = getgrgid(print->info.st_gid);
     int counter = 0;
     char *name = NULL;

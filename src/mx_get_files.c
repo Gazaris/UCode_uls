@@ -1,7 +1,7 @@
 #include "uls.h"
 
-static t_li *create_file_node(t_li *arg) {
-    t_li *node = (t_li *)malloc(1 * sizeof (t_li));
+static t_items_arr *create_file_node(t_items_arr *arg) {
+    t_items_arr *node = (t_items_arr *)malloc(1 * sizeof (t_items_arr));
 
     node->name = mx_strdup(arg->name);
     node->path = mx_strdup(arg->path);
@@ -17,8 +17,8 @@ static t_li *create_file_node(t_li *arg) {
     return node;
 }
 
-static void create_fde(t_li ***files, t_li ***dirs, 
-                        t_li ***errors, t_li ***args) {
+static void create_fde(t_items_arr ***files, t_items_arr ***dirs, 
+                        t_items_arr ***errors, t_items_arr ***args) {
     int j = 0;
     int nDir = 0;
     int nErr = 0;
@@ -33,11 +33,11 @@ static void create_fde(t_li ***files, t_li ***dirs,
         else
             nErr++;
     if (j > 0)
-        *files = malloc((j + 1) * sizeof(t_li *));
+        *files = malloc((j + 1) * sizeof(t_items_arr *));
     if (nDir > 0)
-        *dirs = malloc((nDir + 1) * sizeof(t_li *));
+        *dirs = malloc((nDir + 1) * sizeof(t_items_arr *));
     if (nErr > 0)
-        *errors = malloc((nErr + 1) * sizeof(t_li *));
+        *errors = malloc((nErr + 1) * sizeof(t_items_arr *));
 }
 
 static s_type *create_num() {
@@ -50,7 +50,7 @@ static s_type *create_num() {
     return num;
 }
 
-static void fdir(t_li **args, s_type *num, t_li ***files, t_li ***dirs) {
+static void fdir(t_items_arr **args, s_type *num, t_items_arr ***files, t_items_arr ***dirs) {
     if (!MX_IS_DIR((*args)->info.st_mode)) {
         (*files)[num->n_f++] = create_file_node((*args));
         (*files)[num->n_f] = NULL;
@@ -61,10 +61,10 @@ static void fdir(t_li **args, s_type *num, t_li ***files, t_li ***dirs) {
     }
 }
 
-t_li **mx_get_files(t_li ***args, st_fl *fl) {
-    t_li **files = NULL;
-    t_li **dirs = NULL;
-    t_li **errors = NULL;
+t_items_arr **mx_get_files(t_items_arr ***args, t_flags *fl) {
+    t_items_arr **files = NULL;
+    t_items_arr **dirs = NULL;
+    t_items_arr **errors = NULL;
     s_type *num = create_num();
 
     create_fde(&files, &dirs, &errors, args);

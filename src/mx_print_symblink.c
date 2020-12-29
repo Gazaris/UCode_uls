@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_print_symblink(t_li *print) {
+void mx_print_symblink(t_items_arr *print) {
     char *buf = NULL;
     ssize_t nbytes = 0;
     ssize_t buf_size = 0;

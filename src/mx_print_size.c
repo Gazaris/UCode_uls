@@ -5,7 +5,7 @@ static void print_spaces(int size) {
         mx_printchar(' ');
 }
 
-static void print_duo_cases(t_li *print, t_sz *size) {
+static void print_duo_cases(t_items_arr *print, t_sz *size) {
     char *major = mx_get_major(print);
     char *minor = mx_get_minor(print);
 
@@ -28,7 +28,7 @@ static void print_duo_cases(t_li *print, t_sz *size) {
     free(minor);
 }
 
-void mx_print_sz(t_li *print, t_sz *size) {
+void mx_print_sz(t_items_arr *print, t_sz *size) {
     char *res_now = mx_itoa(print->info.st_size);
     char *res_sz = mx_itoa(size->sz);
     int counter = 0;

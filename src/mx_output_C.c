@@ -1,6 +1,6 @@
 #include "uls.h"
 
-int max_len_names(t_li **names) {
+int max_len_names(t_items_arr **names) {
     int max = 0;
     int temp = 0;
 
@@ -29,7 +29,7 @@ void mx_print_tab(int len, int maxlen) {
         mx_printchar('\t');
 }
 
-static void printcols(t_li **names, int rows, int num, int maxlen) {
+static void printcols(t_items_arr **names, int rows, int num, int maxlen) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; i + j < num; j += rows) {
             mx_printstr(names[i + j]->name);
@@ -41,7 +41,7 @@ static void printcols(t_li **names, int rows, int num, int maxlen) {
     }
 }
 
-static void print_names(t_li **names, int maxlen, int wincol) {
+static void print_names(t_items_arr **names, int maxlen, int wincol) {
     int rows;
     int cols = (wincol / maxlen) != 0 ? wincol / maxlen : 1;
     int num = 0;
@@ -64,7 +64,7 @@ static void print_names(t_li **names, int maxlen, int wincol) {
     mx_printchar('\n');
 }
 
-void mx_output_c(t_li **names) {
+void mx_output_c(t_items_arr **names) {
     int maxlen;
     struct winsize win;
 

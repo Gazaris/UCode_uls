@@ -1,6 +1,6 @@
 #include "uls.h"
 
-static int check_a(char *name, st_fl *fl) {
+static int check_a(char *name, t_flags *fl) {
     if (fl->A != 1)
         return 0;
     if (mx_strcmp(name, ".") == 0)
@@ -10,9 +10,9 @@ static int check_a(char *name, st_fl *fl) {
     return 1;
 }
 
-static int count_read(t_li **arg, st_fl *fl) {
+static int count_read(t_items_arr **arg, t_flags *fl) {
     int count = 0;
-    t_li *args = *arg;
+    t_items_arr *args = *arg;
     DIR *dptr;
     struct dirent *ds;
 
@@ -33,8 +33,8 @@ static int count_read(t_li **arg, st_fl *fl) {
     return count;
 }
 
-static t_li *create_he_node(char *name, char *path) {
-    t_li *node = (t_li *)malloc(1 * sizeof(t_li));
+static t_items_arr *create_he_node(char *name, char *path) {
+    t_items_arr *node = (t_items_arr *)malloc(1 * sizeof(t_items_arr));
 
     node->name = mx_strdup(name);
     node->path = mx_strdup(path);
@@ -48,7 +48,7 @@ static t_li *create_he_node(char *name, char *path) {
     return node;
 }
 
-static void open_dir(t_li ***args, st_fl *fl) {
+static void open_dir(t_items_arr ***args, t_flags *fl) {
     DIR *dptr;
     struct dirent *ds;
     int count = 0;
@@ -56,7 +56,7 @@ static void open_dir(t_li ***args, st_fl *fl) {
     for (int i = 0; (*args)[i] != NULL; i++) {
         count = count_read(&(*args)[i], fl);
         if (count > 0) {
-            (*args)[i]->open = malloc((count + 1) * sizeof(t_li *));
+            (*args)[i]->open = malloc((count + 1) * sizeof(t_items_arr *));
             if ((dptr = opendir((*args)[i]->path)) != NULL) {
                 for (count = 0; (ds = readdir(dptr)) != NULL;)
                     if (ds->d_name[0] != '.' 
@@ -71,8 +71,8 @@ static void open_dir(t_li ***args, st_fl *fl) {
     mx_out_put_all(args, fl);
 }
 
-void mx_opendir(t_li ***args, st_fl *fl) {
-    t_li **files = mx_get_files(&(*args), fl);
+void mx_opendir(t_items_arr ***args, t_flags *fl) {
+    t_items_arr **files = mx_get_files(&(*args), fl);
 
 	if (files) {
 		mx_out_put_menu(&files, fl, 0);

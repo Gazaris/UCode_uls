@@ -1,6 +1,6 @@
 #include "uls.h"
 
-static void print_link_and_color(t_li *print, st_fl *fl) {
+static void print_link_and_color(t_items_arr *print, t_flags *fl) {
     if (fl->G == 1)
         mx_printstr_g(print);
     else if (MX_IS_LNK(print->info.st_mode)) {
@@ -11,7 +11,7 @@ static void print_link_and_color(t_li *print, st_fl *fl) {
         mx_printstr(print->name);
 }
 
-void mx_print_all(t_li *print, t_sz *size, st_fl *fl) {
+void mx_print_all(t_items_arr *print, t_sz *size, t_flags *fl) {
     time_t *chtime = &print->info.st_ctime;
     time_t *atime = &print->info.st_atime;
     time_t *t = &print->info.st_mtime;

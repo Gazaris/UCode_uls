@@ -1,6 +1,6 @@
 #include "uls.h"
 
-static void out_put1(t_li **names, st_fl *fl) {
+static void out_put1(t_items_arr **names, t_flags *fl) {
     for (int i = 0; names[i]; i++) {
         if (fl->G != 1)
             mx_printstr(names[i]->name);
@@ -10,8 +10,8 @@ static void out_put1(t_li **names, st_fl *fl) {
     }
 }
 
-void mx_del_arr_arr(t_li ***args) {
-    t_li **del_arr = *args;
+void mx_del_arr_arr(t_items_arr ***args) {
+    t_items_arr **del_arr = *args;
 
     for (int i = 0; del_arr[i]!= NULL; i++) {
         mx_strdel(&del_arr[i]->name);
@@ -28,7 +28,7 @@ void mx_del_arr_arr(t_li ***args) {
     *args = NULL;
 }
 
-void mx_out_put_menu(t_li ***names, st_fl *fl, int flag) {
+void mx_out_put_menu(t_items_arr ***names, t_flags *fl, int flag) {
     if (**names != NULL) {
         mx_sort(&(*names), fl);
         (fl->l) ? mx_long_out(*names, fl, flag) : (void) 0;
@@ -51,7 +51,7 @@ void mx_out_put_menu(t_li ***names, st_fl *fl, int flag) {
     }
 }
 
-static void outputerropen(t_li **args, st_fl *fl) {
+static void outputerropen(t_items_arr **args, t_flags *fl) {
     if ((*args)->open != NULL) {
         mx_out_put_menu(&(*args)->open, fl, 1);
         if (fl->R == 1) {
@@ -72,7 +72,7 @@ static void outputerropen(t_li **args, st_fl *fl) {
     }
 }
 
-void mx_out_put_all(t_li ***args, st_fl *fl) {
+void mx_out_put_all(t_items_arr ***args, t_flags *fl) {
     if (*args) {
         for (int i = 0; (*args)[i] != NULL; i++) {
             if (fl->files == 1) {

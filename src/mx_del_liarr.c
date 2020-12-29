@@ -1,7 +1,7 @@
 #include "uls.h"
 
-void mx_del_liarr(t_li ***args, t_li **dirs) {
-    t_li **del_arr = *args;
+void mx_del_liarr(t_items_arr ***args, t_items_arr **dirs) {
+    t_items_arr **del_arr = *args;
 
     for (int i = 0; del_arr[i]!= NULL; i++) {
         mx_strdel(&del_arr[i]->name);

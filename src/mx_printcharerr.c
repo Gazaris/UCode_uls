@@ -1,6 +1,6 @@
 #include "uls.h"
 
-void mx_out_err(t_li ***error, st_fl *fl) {
+void mx_out_err(t_items_arr ***error, t_flags *fl) {
     if (error && *error && **error) {
         mx_sort(error, fl);
         fl->files = 1;
@@ -21,8 +21,4 @@ void mx_out_err(t_li ***error, st_fl *fl) {
         free(*error);
         *error = NULL;
     }
-}
-
-void mx_printcharerr(char c) {
-    write(2,&c,1);
 }

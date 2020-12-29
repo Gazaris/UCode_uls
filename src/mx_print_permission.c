@@ -1,6 +1,6 @@
 #include "uls.h"
 
-char mx_get_file_acl(t_li *print) {
+char mx_get_file_acl(t_items_arr *print) {
     acl_t tmp;
 
     if (listxattr(print->path, NULL, 0, XATTR_NOFOLLOW) > 0)
@@ -12,7 +12,7 @@ char mx_get_file_acl(t_li *print) {
     return (' ');
 }
 
-char mx_check_per(t_li *print) {
+char mx_check_per(t_items_arr *print) {
     if (MX_IS_DIR(print->info.st_mode))
         return 'd';
     if (MX_IS_LNK(print->info.st_mode))
@@ -44,7 +44,7 @@ static char check_chmode2(char *chmod) {
         return chmod[9] = 't';
 }
 
-void mx_print_per(t_li *print) {
+void mx_print_per(t_items_arr *print) {
     char chmod[12];
 
     chmod[0] = mx_check_per(print);
